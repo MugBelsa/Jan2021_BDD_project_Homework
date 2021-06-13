@@ -13,6 +13,7 @@ Scenario Outline: User should be able to login with the valid credentials and Ad
 	#Then user should fill out all informations to Add New Account page
 	Then user should be able to fill up the form by entering "<AccountTitle>" and "<Description>" and "<InitialBalance>" and "<AccountNumber>" and "<ContactPerson>" and "<Phone>" and "<InternetBankingURL>"            
 	Then user should be able to click on Submitt Button 
+	Then validate Accounts  
 	
 	
 	Examples: 

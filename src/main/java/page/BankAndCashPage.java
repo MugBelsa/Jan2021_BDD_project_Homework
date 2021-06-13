@@ -1,6 +1,14 @@
 
 package page;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +33,7 @@ public class BankAndCashPage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//button[@name='login']")
 	WebElement SignIn;
 
-	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Bank & Cash')]")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"side-menu\"]/li[10]/a/span[2]")
 	WebElement Bank_And_Cash_field;
 
 	@FindBy(how = How.XPATH, using = "//a[contains(text(),'New Account')]")
@@ -54,19 +62,12 @@ public class BankAndCashPage extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//button[@class=\"btn btn-primary\"]")
 	WebElement Submit_Button;
+	
+	@FindBy(how = How.XPATH, using = "//div[@class=\"alert alert-success fade in\"]")
+	WebElement Validation_successScreen;
+	
 
-	public void bank_And_cash() {
-		Bank_And_Cash_field.click();
-
-	}
-
-	/*
-	 * public void selectDropdown(String bankandCash) { Select sel = new
-	 * Select(bankandCash); sel.selectByVisibleText(value);
-	 * selectDropdown(Bank_And_Cash_field, bankandCash);
-	 * 
-	 * }
-	 */
+	
 	public void New_account() {
 		New_account_field.click();
 
@@ -98,5 +99,24 @@ public class BankAndCashPage extends BasePage {
 		Submit_Button.click();
 
 	}
+	public String getMessage() {
+	 return driver.getTitle();
+	 
+	}
+	public void takeScreenShotsAtOfTest(WebDriver driver) throws IOException {
+
+		TakesScreenshot ts = ((TakesScreenshot) driver);
+		File sourceFile = ts.getScreenshotAs(OutputType.FILE);
+		SimpleDateFormat formatter = new SimpleDateFormat("MMddyy_HHmmss");
+		Date date = new Date();
+		String label = formatter.format(date);
+		String currentDirectory = System.getProperty("user.dir");
+		FileUtils.copyFile(sourceFile, new File(currentDirectory + "/screenshot/" + label + ".png"));
+
+	}
+	
+	
+	
+	//div[@class="alert alert-success fade in"]
 
 }
