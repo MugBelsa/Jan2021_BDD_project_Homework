@@ -13,11 +13,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Select;
 
 public class BankAndCashPage extends BasePage {
 
 	WebDriver driver;
+	
 
 	public BankAndCashPage(WebDriver driver) {
 
@@ -73,7 +73,7 @@ public class BankAndCashPage extends BasePage {
 
 	}
 
-	public void enterCredentialsForNewAccount(String accountTitle, String description, String initial_balance,
+	public void enterCredentialsForAccount(String accountTitle, String description, String initial_balance,
 			String account_number, String contact_person, String phone_number, String Internet_Banking_URL) {
 		AccountTitle_field.sendKeys(accountTitle);
 		Description_field.sendKeys(description);

@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		
-		features="classpath:features",
+		features="classpath:feature",
 		glue="steps",
 	    tags ="@Scenario2",
 		monochrome= true,

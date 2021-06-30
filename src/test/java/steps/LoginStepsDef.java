@@ -19,6 +19,8 @@ public class LoginStepsDef {
 	LoginPageH loginPage;
 	BasePage basepage;
 	BankAndCashPage bankandcash;
+	
+	
 
 	@Given("^User is on the Techfios login page$")
 	public void User_is_on_the_Techfios_login_page() {
@@ -54,8 +56,8 @@ public class LoginStepsDef {
 		Thread.sleep(1000);
 	}
 
-	@Then("^user should be able to click on New Account$")
-	public void user_should_be_able_to_click_on_New_Account() throws Throwable {
+	@Then("^user should be able to click on the New Account$")
+	public void user_should_be_able_to_click_on_the_New_Account() throws Throwable {
 		Thread.sleep(2000);
 		bankandcash = PageFactory.initElements(driver, BankAndCashPage.class);
 		bankandcash.New_account();
@@ -63,19 +65,19 @@ public class LoginStepsDef {
 
 	}
 
-	@Then("^user should be able to fill up the form by entering \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
-	public void user_should_be_able_to_fill_up_the_form_by_entering_and_and_and_and_and_and(String accountTitle,
+	@Then("^user should fill the form by entering \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
+	public void user_should_fill_the_form_by_entering_and_and_and_and_and_and(String accountTitle,
 			String description, String initial_balance, String account_number, String contact_person,
 			String phone_number, String Internet_Banking_URL) throws Throwable {
 		bankandcash = PageFactory.initElements(driver, BankAndCashPage.class);
-		bankandcash.enterCredentialsForNewAccount("savings Account", "My business account", "500000 ", "28965562",
-				"MichFish", "825-456-3156", "www.bofa.com");
+		bankandcash.enterCredentialsForAccount(accountTitle, description, initial_balance, account_number, contact_person,
+			 phone_number, Internet_Banking_URL);
 		bankandcash.randomNumber(account_number);
 		bankandcash.randomNumForAccount(accountTitle);
 	}
 
-	@Then("^user should be able to click on Submitt Button$")
-	public void user_should_be_able_to_click_on_Submitt_Button() throws Throwable {
+	@Then("^user should be click on Submitt Button$")
+	public void user_should_be_click_on_Submitt_Button() throws Throwable {
 		bankandcash = PageFactory.initElements(driver, BankAndCashPage.class);
 		bankandcash.Submit_Button_field();
 		Thread.sleep(2000);
@@ -87,8 +89,13 @@ public class LoginStepsDef {
 		String expectedTitle = "Accounts- iBilling";
 		String actualTitle = bankandcash.getMessage();
 		Assert.assertEquals(expectedTitle, actualTitle);
+		System.out.println("Account created!!!");
 		bankandcash.takeScreenShotsAtOfTest(driver);
 	}
+	
+
+	
+	//class="alert alert-success fade in"
 	
 	@After
 	public void tearDown() {
